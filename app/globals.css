@@ -1,0 +1,423 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-tint: var(--brand-tint);
+
+  --color-mint: var(--mint);
+  --color-mint-strong: var(--mint-strong);
+  --color-mint-soft: var(--mint-soft);
+  --color-violet: var(--violet);
+  --color-violet-strong: var(--violet-strong);
+  --color-violet-soft: var(--violet-soft);
+  --color-sky: var(--sky);
+  --color-sky-strong: var(--sky-strong);
+  --color-sky-soft: var(--sky-soft);
+  --color-rose: var(--rose);
+  --color-rose-strong: var(--rose-strong);
+  --color-rose-soft: var(--rose-soft);
+  --color-amber: var(--amber);
+  --color-amber-strong: var(--amber-strong);
+  --color-amber-soft: var(--amber-soft);
+  --color-danger: var(--danger);
+  --color-danger-strong: var(--danger-strong);
+  --color-danger-soft: var(--danger-soft);
+
+  --color-glass-soft: var(--glass-soft);
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
+  --color-glass-line: var(--glass-line);
+  --color-ink-inverse: var(--ink-inverse);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/*
+ * Design tokens. Every token resolves through `light-dark()` so the palette
+ * follows the *computed* `color-scheme`: the OS preference by default, or the
+ * explicit override reflected in `<meta name="color-scheme">` (see below).
+ * Raw light/dark values live in separate custom properties so they can be
+ * recombined (e.g. inside gradients and shadows).
+ */
+:root {
+  color-scheme: light dark;
+
+  /* Surfaces */
+  --surface: light-dark(#ffffff, #191b29);
+  --surface-muted: light-dark(#f7f5fb, #101120);
+
+  /* Text */
+  --ink: light-dark(#1d2033, #eceef7);
+  --ink-soft: light-dark(#5a6076, #b6bacb);
+  --ink-muted: light-dark(#8d92a6, #8b90a4);
+
+  /* Lines */
+  --line: light-dark(#ece9f4, #2b2e42);
+  --line-soft: light-dark(#f4f1f9, #212433);
+
+  /* Accents */
+  --brand: light-dark(#f97316, #fb8b3c);
+  --brand-strong: light-dark(#e8620a, #ffab73);
+  --brand-ink: light-dark(#8a3d05, #ffc79c);
+  --brand-soft: light-dark(#fff0e4, rgba(249, 115, 22, 0.16));
+  --brand-tint: light-dark(#fff7f1, rgba(249, 115, 22, 0.1));
+
+  --mint: light-dark(#22b892, #35cfa6);
+  --mint-strong: light-dark(#0f8a6c, #4fd9b4);
+  --mint-soft: light-dark(#e4f8f1, rgba(34, 184, 146, 0.16));
+
+  --violet: light-dark(#8b5cf6, #a688ff);
+  --violet-strong: light-dark(#6d3fd4, #bba4ff);
+  --violet-soft: light-dark(#f0eafe, rgba(139, 92, 246, 0.18));
+
+  --sky: light-dark(#3b82f6, #6fa8ff);
+  --sky-strong: light-dark(#1f6fd0, #8dbcff);
+  --sky-soft: light-dark(#e8f1fe, rgba(59, 130, 246, 0.18));
+
+  --rose: light-dark(#ec4899, #f472b6);
+  --rose-strong: light-dark(#c02a72, #ff9acb);
+  --rose-soft: light-dark(#fdeaf3, rgba(236, 72, 153, 0.18));
+
+  --amber: light-dark(#f0a020, #f5b942);
+  --amber-strong: light-dark(#a86a06, #ffca75);
+  --amber-soft: light-dark(#fdf3e0, rgba(240, 160, 32, 0.18));
+
+  --danger: light-dark(#ef4444, #ff7070);
+  --danger-strong: light-dark(#c22a2a, #ff9d9d);
+  --danger-soft: light-dark(#fdecec, rgba(239, 68, 68, 0.18));
+
+  /* Translucent "glass" surfaces used by floating controls, panels and table rows */
+  --glass-soft: light-dark(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.04));
+  --glass: light-dark(rgba(255, 255, 255, 0.82), rgba(30, 33, 48, 0.72));
+  --glass-strong: light-dark(#ffffff, #232639);
+  --glass-line: light-dark(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
+
+  /* Foreground that stays legible on top of `--ink` (used by tooltips/inverse chips) */
+  --ink-inverse: light-dark(#ffffff, #14161f);
+
+  /* Scrollbars */
+  --scrollbar-thumb: light-dark(#ddd6ea, #3c4159);
+  --scrollbar-track: light-dark(#f4f1f9, #191b29);
+
+  /* shadcn / Base UI semantic tokens */
+  --radius: 0.75rem;
+  --background: var(--surface-muted);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: light-dark(#ffffff, #1b1e2d);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: var(--line-soft);
+  --secondary-foreground: var(--ink);
+  --muted: var(--line-soft);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--brand-soft);
+  --accent-foreground: var(--brand-strong);
+  --destructive: var(--danger);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: light-dark(#f9a86a, #ffa863);
+  --chart-1: light-dark(#f97316, #fb8b3c);
+  --chart-2: light-dark(#8b5cf6, #a688ff);
+  --chart-3: light-dark(#22b892, #35cfa6);
+  --chart-4: light-dark(#3b82f6, #6fa8ff);
+  --chart-5: light-dark(#ec4899, #f472b6);
+
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--brand-soft);
+  --sidebar-accent-foreground: var(--brand-strong);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--ring);
+
+  /* Adapt native controls (checkboxes, sliders, focus rings) to the brand */
+  accent-color: var(--brand);
+}
+
+/*
+ * Mirror the manual override in `<meta name="color-scheme">` onto the CSS
+ * `color-scheme` property. The `<meta>` alone is only a presentational hint
+ * that author CSS would otherwise override, and this keeps the whole page
+ * (including `light-dark()` tokens and native UI) in sync without JS.
+ */
+:root:has(> head > meta[name='color-scheme'][content='dark']) {
+  color-scheme: dark;
+}
+:root:has(> head > meta[name='color-scheme'][content='light']) {
+  color-scheme: light;
+}
+/* Belt-and-braces: the toggle also sets a class, used by shadcn's `dark:` utilities. */
+:root.dark {
+  color-scheme: dark;
+}
+:root.light {
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply text-ink font-sans;
+    background-color: var(--surface-muted);
+    background-image:
+      radial-gradient(
+        1200px 560px at 2% -10%,
+        light-dark(#fbd6e7, rgba(236, 72, 153, 0.12)) 0%,
+        transparent 64%
+      ),
+      radial-gradient(
+        980px 520px at 98% -8%,
+        light-dark(#ded4fc, rgba(139, 92, 246, 0.14)) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        820px 560px at 64% 110%,
+        light-dark(#d9ebff, rgba(59, 130, 246, 0.12)) 0%,
+        transparent 62%
+      ),
+      radial-gradient(
+        680px 460px at 8% 98%,
+        light-dark(#ffe6d2, rgba(249, 115, 22, 0.1)) 0%,
+        transparent 64%
+      );
+    background-attachment: fixed;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-[-0.01em];
+  }
+  ::selection {
+    background: light-dark(#ffd9bd, #4a3220);
+    color: light-dark(#7a3200, #ffd9bd);
+  }
+}
+
+@layer components {
+  .panel {
+    background: light-dark(rgba(255, 255, 255, 0.86), rgba(25, 27, 41, 0.82));
+    border: 1px solid light-dark(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.07));
+    box-shadow:
+      0 1px 2px light-dark(rgba(29, 32, 51, 0.03), rgba(0, 0, 0, 0.4)),
+      0 18px 40px -26px light-dark(rgba(76, 58, 110, 0.4), rgba(0, 0, 0, 0.7));
+    backdrop-filter: blur(14px);
+  }
+  .panel-solid {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow:
+      0 1px 2px light-dark(rgba(29, 32, 51, 0.03), rgba(0, 0, 0, 0.4)),
+      0 16px 36px -28px light-dark(rgba(76, 58, 110, 0.45), rgba(0, 0, 0, 0.7));
+  }
+  .rail-item {
+    @apply relative flex size-11 items-center justify-center rounded-2xl text-ink-muted transition-all duration-200;
+  }
+  .rail-item:hover {
+    @apply bg-line-soft text-ink;
+  }
+  .rail-item[data-active='true'] {
+    @apply bg-brand-soft text-brand;
+    box-shadow: inset 0 0 0 1px light-dark(rgba(249, 115, 22, 0.14), rgba(249, 115, 22, 0.3));
+  }
+
+  .soft-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+  .grid-fade {
+    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  }
+}
+
+/* Legacy WebKit scrollbar fallback for browsers without `scrollbar-color`. */
+@supports not (scrollbar-color: auto) {
+  .soft-scroll {
+    scrollbar-width: auto;
+  }
+  .soft-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .soft-scroll::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 999px;
+  }
+  .soft-scroll::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+}
+
+/*
+ * Responsive/sticky data table (shared by `SimpleTable`).
+ * The container query lets a table adapt to *its own* width, so the same
+ * component stacks correctly inside a narrow dashboard widget or a wide page.
+ */
+.table-wrapper {
+  container-type: inline-size;
+  max-block-size: min(640px, 75vh);
+  overflow: auto;
+}
+.table-wrapper > table {
+  border-collapse: separate;
+  border-spacing: 0 0.25rem;
+}
+.table-wrapper thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+}
+.table-wrapper thead th::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 1px;
+  background: var(--line);
+}
+
+@container (width < 640px) {
+  .table-wrapper > table,
+  .table-wrapper thead,
+  .table-wrapper tbody,
+  .table-wrapper tr,
+  .table-wrapper td {
+    display: block;
+  }
+  .table-wrapper thead {
+    display: none;
+  }
+  .table-wrapper tr {
+    position: relative;
+    margin-block-end: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 0.25rem 0.5rem;
+  }
+  .table-wrapper td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border-radius: 0 !important;
+    background: transparent !important;
+    padding: 0.375rem 0.5rem;
+  }
+  .table-wrapper td::before {
+    content: attr(data-label);
+    flex: none;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float-in {
+  animation: float-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-in,
+  .animate-pulse-ring {
+    animation: none;
+  }
+  *,
+  ::before,
+  ::after {
+    scroll-behavior: auto !important;
+  }
+}
